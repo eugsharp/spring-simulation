@@ -12,10 +12,20 @@ total_time = 100
 # lists to store results
 x_values = [x]
 t_values = [t]
+# plotting y vs x
+def plot_figure(title, xlabel, ylabel):
+    plt.figure(figsize=(8, 5))
+    plt.plot(t_values, x_values)
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.grid(True)
+    plt.legend()
+    plt.show()
 
 # simulation loop
 for n in range(int(total_time/delta_t)):
-    x_doubledot = -k * (x - l) / m  
+    x_doubledot = -k * (x - l) / m
     
     # update velocity and position using Euler integration
     x_dot += x_doubledot * delta_t
@@ -26,12 +36,4 @@ for n in range(int(total_time/delta_t)):
     x_values.append(x)
     t_values.append(t)
 
-# plotting x vs t
-plt.figure(figsize=(8, 5))
-plt.plot(t_values, x_values)
-plt.title("Displacement vs Time (Spring Oscillation)")
-plt.xlabel("Time (t)")
-plt.ylabel("Displacement (x)")
-plt.grid(True)
-plt.legend()
-plt.show()
+plot_figure("Displacement vs Time (Spring Oscillation)", "Time (t)", "Displacement (x)")
